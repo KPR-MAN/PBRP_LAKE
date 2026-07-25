@@ -24,7 +24,7 @@ on:
       DEVICE_TREE:
         description: 'Custom Recovery Tree' # Your already made Device Tree for TWRP
         required: true
-        default: 'https://github.com/username/repo'
+        default: 'https://github.com/KPR-MAN/recovery_tree_device_xiaomi_lake'
       DEVICE_TREE_BRANCH:
         description: 'Custom Recovery Tree Branch' # Your Device Tree Branch, make sure it's right.
         required: true
@@ -32,15 +32,15 @@ on:
       DEVICE_PATH:
         description: 'DEVICE_PATH'
         required: true
-        default: 'device/xiaomi/pond'
+        default: 'device/xiaomi/lake'
       DEVICE_NAME:
         description: 'DEVICE_NAME'
         required: true
-        default: 'pond'
+        default: 'lake'
       MAKEFILE_NAME:
         description: 'MAKEFILE_NAME (excluding .mk extension, Example: omni_7304F)'
         required: true
-        default: 'twrp_pond'
+        default: 'twrp_lake'
       BUILD_TARGET:
         description: 'Specify your Build Target' # Pick among boot, recovery and vendor_boot
         required: true
@@ -176,7 +176,8 @@ jobs:
           Build: ${{ inputs.MANIFEST_BRANCH }}
           Device: [Device Tree/Branch](${{ inputs.DEVICE_TREE }}/tree/${{ inputs.DEVICE_TREE_BRANCH }})
           Commit: Most recent [commit](${{ inputs.DEVICE_TREE }}/commit/${{ env.COMMIT_ID }}) during building.
-        prerelease: true
+        prerelease: false
+        make_latest: true
 
     - name: Run LDCheck
       if: inputs.LDCHECK == 'true'
